@@ -52,6 +52,17 @@ extension AudioPlayer {
             backgroundHandler.endBackgroundTask()
         }
     }
+    
+    /// play item at index
+    /// - Parameter index: index of queue
+    public func play(atIndex index: Int) {
+        if let  queue = queue, (0 ..< queue.queue.count).contains(index) == true {
+            queue.nextPosition = index
+            currentItem = queue.nextItem()
+        } else {
+            stop()
+        }
+    }
 
     /// Plays previous item in the queue or rewind current item.
     public func previous() {
